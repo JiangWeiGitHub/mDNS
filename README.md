@@ -1,4 +1,8 @@
 # mDNS
+
+### Related Reference
+[**Offical Link**](https://www.npmjs.com/package/mdns)
+
 ### Prerequisites
 ```
 mkdir /path/your/name
