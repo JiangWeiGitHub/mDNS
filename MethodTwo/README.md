@@ -1,4 +1,5 @@
-# mDNS
+### About
+Using `mdns` npm lib
 
 ### Related Reference
 [**Offical Link**](https://www.npmjs.com/package/mdns)
