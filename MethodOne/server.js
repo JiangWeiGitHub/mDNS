@@ -3,9 +3,9 @@ var mdns = require('multicast-dns')()
 mdns.on('query', function(query) {
 
   if (query.questions[0] && query.questions[0].name.indexOf('hahaha') != -1) {
-  
+
     console.log(query)
-    
+
     mdns.respond(
       {
         answers:
