@@ -4,6 +4,8 @@ mdns.on('response', function(response) {
   if (response.answers[0] && response.answers[0].name.indexOf('hahaha') != -1)
   {
     console.log('got a response packet:', response)
+
+    mdns.destroy()
   }
 })
 
