@@ -8,19 +8,15 @@ mdns.on('query', function(query) {
 
     mdns.respond(
       {
-        answers:
-        [
-          {
-            name: 'hahaha-hehehe',
-            type: 'A',
-            ttl: 300,
-            data: '192.168.5.213'
-          }
-        ]
+        answers:[{
+          name: 'hahaha-hehehe',
+          type: 'A',
+          ttl: 300,
+          data: '192.168.5.213'
+        }]
       }
     )
   }
 })
 
-//mdns.destroy()
-
+// mdns.destroy()
