@@ -9,8 +9,15 @@ mdns.on('query', function (query) {
     if (q.type === 'PTR' && q.name === '_http._tcp.local') {
     
       // console.log('got a query packet:', q)
-
+      
       mdns.respond({
+        
+        //questions: [{
+        //name: '_http._tcp.local',
+        //type: 'PTR',
+        //class: 1
+        //}],        
+        
         answers: [
         {
           name: '_http._tcp.local',
@@ -18,10 +25,10 @@ mdns.on('query', function (query) {
           class: 1,
           flush: false,
           ttl: 10,
-          data: 'ABCDEFG.WISNUC._http._tcp.local'
+          data: 'ABCDEFG._http._tcp.local'
         },
         {
-          name: 'ABCDEFG.WISNUC._http._tcp.local',
+          name: 'ABCDEFG._http._tcp.local',
           type: 'TXT',
           class: 1,
           flush: false,
@@ -29,7 +36,7 @@ mdns.on('query', function (query) {
           data: ''
         },
         {
-          name: 'ABCDEFG.WISNUC._http._tcp.local',
+          name: 'ABCDEFG._http._tcp.local',
           type: 'SRV',
           class: 1,
           flush: false,
@@ -38,11 +45,11 @@ mdns.on('query', function (query) {
             port:3001,
             weigth: 0,
             priority: 0,
-            target: 'ABCDEFGHIJKLMN.WISNUC.local'
+            target: 'ABCDEFGHIJKLMN.local'
           }
         },
         {
-          name: 'ABCDEFGHIJKLMN.WISNUC.local',
+          name: 'ABCDEFGHIJKLMN.local',
           type: 'AAAA',
           class: 1,
           flush: false,
