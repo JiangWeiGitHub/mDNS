@@ -1,9 +1,37 @@
+var ifaces = require('os').networkInterfaces()
 var mdns = require('multicast-dns')()
+
+var getIP = () => {
+
+  var ipAddress = {
+    ipv4: '',
+    ipv6: ''
+  }
+
+  Object.keys(ifaces).forEach( (ifname) => {
+
+    ifaces[ifname].forEach( (iface) => {
+      if ('IPv4' === iface.family || iface.internal !== false)
+      {
+        // skip over internal (i.e. 127.0.0.1)
+        ipAddress.ipv4 = iface.address
+      }
+      else if ('IPv6' === iface.family || iface.internal !== false)
+      {
+        // skip over internal (i.e. 127.0.0.1)
+        ipAddress.ipv6 = iface.address
+      }
+     
+    })
+  })
+
+  return ipAddress
+
+}
 
 mdns.on('warning', function (err) {
   console.log(err.stack)
 })
-
 
 mdns.query(
 {
@@ -43,6 +71,7 @@ mdns.query(
   ],
   additionals: []
 })
+
 
 mdns.respond({
         
@@ -86,7 +115,7 @@ mdns.respond({
       class: 1,
       ttl: 120,
       flush: true,
-      data: 'fe80::d529:4ea4:7354:3163'
+      data: getIP().ipv6.toString()
     },
     {
       name: 'WISNUC.local',
@@ -94,7 +123,7 @@ mdns.respond({
       class: 1,
       ttl: 120,
       flush: true,
-      data: '192.168.111.111'
+      data: getIP().ipv4.toString()
     },
     {
       name: '_services._dns-sd._udp.local',
